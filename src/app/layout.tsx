@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Anton } from "next/font/google"; // Import Anton font
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +11,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+// Adding Anton font
+const anton = Anton({
+  variable: "--font-anton", // Set a custom CSS variable name for Anton
+  subsets: ["latin"],
+  weight: "400"
 });
 
 export const metadata: Metadata = {
@@ -25,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${anton.variable} antialiased`} // Add the Anton variable here
       >
         {children}
       </body>
