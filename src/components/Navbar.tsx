@@ -5,30 +5,31 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const handleScroll = () => {
-    if (window.scrollY > lastScrollY && window.scrollY > 50) {
-      // User scrolling down
-      setIsVisible(false);
-    } else {
-      // User scrolling up
-      setIsVisible(true);
-    }
-    setLastScrollY(window.scrollY);
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 50) {
+        // User scrolling down
+        setIsVisible(false);
+      } else {
+        // User scrolling up
+        setIsVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY]); // Now only `lastScrollY` is a dependency
+
   return (
     <nav
-    className={`bg-white/10 backdrop-blur-md text-white py-4 px-6 shadow-lg fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
-      isVisible ? "translate-y-0" : "-translate-y-full"
-    }`}
-  >
+      className={`bg-white/10 backdrop-blur-md text-white py-4 px-6 shadow-lg fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand Name */}
         <div className="text-2xl font-bold tracking-wider text-white">

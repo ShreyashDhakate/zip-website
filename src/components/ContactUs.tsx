@@ -1,10 +1,18 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 
-const ContactUsPage = () => {
-  const [formData, setFormData] = useState({
+// Define types for form data
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const ContactUsPage: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
@@ -12,12 +20,14 @@ const ContactUsPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  // Handle form input changes with proper typing
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  // Handle form submission with proper typing
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -42,7 +52,7 @@ const ContactUsPage = () => {
   };
 
   return (
-    <div className="min-h-screen  bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900 text-white">
       {/* Header */}
       <motion.div
         className="text-center py-10"
@@ -52,8 +62,7 @@ const ContactUsPage = () => {
       >
         <h1 className="text-4xl mt-12 font-bold">Contact Us</h1>
         <p className="text-lg mt-2 text-gray-400">
-          We would love to hear from you! Reach out to us for inquiries or
-          support.
+          We would love to hear from you! Reach out to us for inquiries or support.
         </p>
       </motion.div>
 
@@ -66,14 +75,10 @@ const ContactUsPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            Thank you for contacting us! We'll get back to you soon.
+            Thank you for contacting us! We&apos;ll get back to you soon.
           </motion.div>
         ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-            noValidate
-          >
+          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
             <div>
               <label htmlFor="name" className="block text-sm text-gray-400">
                 Name
