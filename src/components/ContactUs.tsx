@@ -26,22 +26,31 @@ const ContactUsPage: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const serviceId = process.env.SERVICE_ID;
+  const templateId = process.env.TEMPLATE_ID;
+  const userId = process.env.USER_ID;
+
   // Handle form submission with proper typing
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
+      if (!serviceId || !templateId || !userId) {
+        console.error("EmailJS environment variables are missing.");
+        setIsSubmitting(false);
+        return; // Stop execution if any variable is undefined
+      }
       // Replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_USER_ID with actual EmailJS values.
       await emailjs.send(
-        "service_p4k2a5c",
-        "template_lnbf0h6",
+        serviceId,
+        templateId,
         {
           user_name: formData.name,
           user_email: formData.email,
           message: formData.message,
         },
-        "_fKbLkeSIs9666qE-"
+        userId
       );
       setIsSubmitted(true);
     } catch (error) {
