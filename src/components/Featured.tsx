@@ -30,7 +30,7 @@ const techData = [
 
 const FeaturedPage = () => {
   return (
-    <div className="bg-gray-900 text-white mb-6">
+    <div className="bg-gray-900 text-white mb-6 p-2">
       {/* Technologies and Tools Section */}
       <motion.section
         id="technologies"

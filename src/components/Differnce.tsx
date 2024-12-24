@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const DifferencePage = () => {
   return (
-    <div className="h-[100vh] w-screen">
+    <div className="h- w-screen mb-2">
       <div className="bg-gray-900 -mt-[1.5rem] text-white">
         <div className="max-w-full mx-auto px-6 grid md:grid-cols-2 gap-12">
           {/* Key Differentiators */}
