@@ -102,16 +102,16 @@ const AboutPage = () => {
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[{
-            name: "John Doe",
+            name: "Shreyash Dhakate",
             role: "Lead Software Engineer",
             image: team,
           }, {
-            name: "Jane Smith",
-            role: "UX/UI Designer",
+            name: "Ojash Marghade",
+            role: "Software Engineer",
             image: team,
           }, {
-            name: "Michael Brown",
-            role: "Project Manager",
+            name: "Ankit Singh",
+            role: "App Developer",
             image: team,
           }].map((teamMember, index) => (
             <motion.div
