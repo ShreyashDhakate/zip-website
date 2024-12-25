@@ -23,16 +23,20 @@ const Hero: FC = () => {
     <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white flex items-center justify-center">
       {/* Sliding Background Layer */}
       <motion.div
-        className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-40"
-        style={{
-          backgroundImage: `url(${backgroundImage.src})`,
-          transition: "background-position 1s ease-in-out", // Smooth sliding effect
-          backgroundPosition: direction === "left" ? "0% 0%" : "100% 0%", // Slide from left to right
-        }}
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 15, ease: "easeInOut", repeat: Infinity }}
-      />
+  className="absolute top-0 left-0 w-full h-full opacity-40"
+  // initial={{ scale: 1.1 }}
+  // animate={{ scale: 1 }}
+  transition={{ duration: 15, ease: "easeInOut", repeat: Infinity }}
+>
+  <video
+    className="w-full h-full object-cover"
+    src={"/bgvideo.mp4"} // Replace with the path to your video
+    autoPlay
+    loop
+    muted
+  />
+</motion.div>
+
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center space-y-8 px-4">
