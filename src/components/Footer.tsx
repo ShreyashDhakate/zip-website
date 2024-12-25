@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
                 info@zipsoftwares.com
               </a>
             </p>
-            <p className="text-sm">Phone: +1-800-123-4567</p>
+            <p className="text-sm">Phone: +91-8468882142</p>
             <div className="flex space-x-4 mt-4">
               <a
                 href="#"

@@ -48,7 +48,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand Name */}
         <div className="text-2xl font-bold tracking-wider text-white" style={{ zIndex: 1000 }}>
-          <span className="hover:animate-pulse" >ZipSoftware</span>
+          <span className="hover:animate-pulse" >ZipSoftwares</span>
         </div>
 
         {/* Hamburger Icon */}
