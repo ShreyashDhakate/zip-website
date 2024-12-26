@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Anton } from "next/font/google"; // Import Anton font
 import "./globals.css";
-
+import { SpeedInsights } from '@vercel/speed-insights/next';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -36,6 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${anton.variable} antialiased`} // Add the Anton variable here
       >
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
