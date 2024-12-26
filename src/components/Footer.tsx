@@ -58,13 +58,17 @@ const Footer: React.FC = () => {
             <p className="text-sm">
               Email:{" "}
               <a
-                href="mailto:info@zipsoftwares.com"
+                href="mailto:zipsoftwares.in@gmail.com"
                 className="hover:underline"
               >
-                info@zipsoftwares.com
+                zipsoftwares.in@gmail.com
               </a>
             </p>
-            <p className="text-sm">Phone: +91-8468882142</p>
+            <div className="flex flex-col items-start">
+              <p className="text-sm">Phone: +91-8468882142</p>
+              <p className="text-sm ml-12">+91-9370647514</p>
+              <p className="text-sm ml-12">+91-7387257752</p>
+            </div>
             <div className="flex space-x-4 mt-4">
               <a
                 href="#"
