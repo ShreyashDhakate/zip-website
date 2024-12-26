@@ -1,23 +1,23 @@
 "use client";
 
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 import { motion } from "framer-motion";
-import welcomebg from "../../public/bg3.jpeg";
-import welcomebg2 from "../../public/bg2.jpeg";
+// import welcomebg from "../../public/bg3.jpeg";
+// import welcomebg2 from "../../public/bg2.jpeg";
 
 const Hero: FC = () => {
-  const [backgroundImage, setBackgroundImage] = useState(welcomebg);
-  const [direction, setDirection] = useState("left");
+  // const [backgroundImage, setBackgroundImage] = useState(welcomebg);
+  // const [direction, setDirection] = useState("left");
 
   // Change background image and sliding direction after a certain interval
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDirection((prevDirection) => (prevDirection === "left" ? "right" : "left"));
-      setBackgroundImage((prev) => (prev === welcomebg ? welcomebg2 : welcomebg));
-    }, 8000); // Change every 8 seconds
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setDirection((prevDirection) => (prevDirection === "left" ? "right" : "left"));
+  //     setBackgroundImage((prev) => (prev === welcomebg ? welcomebg2 : welcomebg));
+  //   }, 8000); // Change every 8 seconds
 
-    return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, []);
+  //   return () => clearInterval(interval); // Cleanup interval on component unmount
+  // }, []);
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white flex items-center justify-center">
@@ -41,7 +41,7 @@ const Hero: FC = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center space-y-8 px-4">
         <motion.h1
-          className="text-3xl lg:text-6xl font-extrabold tracking-wide"
+          className="text-3xl lg:text-8xl font-light tracking-wide"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
@@ -58,7 +58,7 @@ const Hero: FC = () => {
           Redefining the Software Landscape for Tomorrow
         </motion.p>
 
-        <motion.button
+        {/* <motion.button
           className="bg-gradient-to-r from-blue-600 to-blue-500 px-8 py-3 rounded-lg shadow-lg text-white font-semibold hover:bg-blue-700 hover:scale-105 transition-all"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -66,7 +66,7 @@ const Hero: FC = () => {
           transition={{ delay: 1, duration: 0.5 }}
         >
           Get Started
-        </motion.button>
+        </motion.button> */}
       </div>
     </div>
   );
