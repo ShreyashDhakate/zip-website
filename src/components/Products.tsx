@@ -130,7 +130,7 @@ const ProductPage: React.FC = () => {
                   onClick={() => handleDownload(product.downloadLink || "#")}
                   animate={
                     isDownloading
-                      ? { scale: 1.1, opacity: 0.8 }
+                      ? { scale: 1, opacity: 0.8 }
                       : { scale: 1, opacity: 1 }
                   }
                   transition={{
