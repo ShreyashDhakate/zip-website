@@ -93,7 +93,7 @@ const Navbar = () => {
                 className="relative text-lg font-medium transition duration-300 ease-in-out group"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-[#DF6D2D] via-cyan-500 to-primary opacity-0 group-hover:opacity-100 rounded-full blur-lg"></span>
-                <span className="relative z-10 group-hover:text-primary">
+                <span className="relative z-10 group-hover:text-[#D39D55]">
                   {item}
                 </span>
               </a>
