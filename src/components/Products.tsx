@@ -1,28 +1,30 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-
+import caton from "@/assets/caton.png";
+import Image from "next/image";
+import commingsoon from "@/assets/commingsoon.png"
 const products = [
   {
     name: "Caton",
     description: "A comprehensive pharmacy management system.",
     status: "Ready",
     videoUrl: "https://www.youtube.com/embed/sHVUlXAvCd0",
-    imageUrl: "https://via.placeholder.com/500x300?text=Caton+Image",
+    imageUrl: caton ,
   },
   {
     name: "MediSync",
     description: "A collaborative platform for medical professionals.",
     status: "Coming Soon",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    imageUrl: "https://via.placeholder.com/500x300?text=MediSync+Image",
+    imageUrl: commingsoon,
   },
   {
     name: "HealthTrack",
     description: "Personal health and fitness tracking software.",
     status: "Coming Soon",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    imageUrl: "https://via.placeholder.com/500x300?text=HealthTrack+Image",
+    imageUrl: commingsoon,
   },
 ];
 
@@ -67,15 +69,24 @@ const ProductPage = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <motion.img
-              src={product.imageUrl}
-              alt={product.name}
+            <motion.div
+              key={index}
               className="w-full h-[200px] rounded-t-lg object-cover mb-4"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.6 }}
-            />
-            <h2 className="text-lg font-semibold text-primary">{product.name}</h2>
+            >
+              <Image
+                src={product.imageUrl}
+                alt={product.name}
+                className="w-full h-full object-cover"
+                width={500} // Adjust width if needed
+                height={200} // Adjust height if needed
+              />
+            </motion.div>
+            <h2 className="text-lg font-semibold text-primary">
+              {product.name}
+            </h2>
             <p className="text-gray-300 mt-2 text-sm">{product.description}</p>
             <span
               className={`inline-block mt-4 px-4 py-1 rounded-full text-sm font-medium ${

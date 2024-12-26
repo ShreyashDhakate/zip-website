@@ -3,8 +3,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image"; // Import Image from Next.js
 import missionimg from "@/assets/mission.jpeg"; // Import the mission image
-import team from "@/assets/team.jpeg"; 
-
+import shreyash from "@/assets/shreyash.png"; 
+import ankit from "@/assets/ankit.png"; 
+import ojash from "@/assets/ojash.png";
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -104,15 +105,15 @@ const AboutPage = () => {
           {[{
             name: "Shreyash Dhakate",
             role: "Lead Software Engineer",
-            image: team,
+            image: shreyash,
           }, {
             name: "Ojash Marghade",
             role: "Software Engineer",
-            image: team,
+            image: ojash,
           }, {
             name: "Ankit Singh",
             role: "App Developer",
-            image: team,
+            image: ankit,
           }].map((teamMember, index) => (
             <motion.div
               key={index}
@@ -125,8 +126,8 @@ const AboutPage = () => {
               <Image
                 src={teamMember.image}
                 alt={teamMember.name}
-                className="w-24 h-24 mx-auto rounded-full mb-4"
-                width={96} // Set width
+                className="w-34 h-34 mx-auto rounded-full mb-4"
+                width={196} // Set width
                 height={96} // Set height
               />
               <h3 className="text-xl font-semibold mb-2">{teamMember.name}</h3>
