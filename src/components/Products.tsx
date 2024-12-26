@@ -1,36 +1,52 @@
 "use client";
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import caton from "@/assets/caton.png";
+import catonImage from "@/assets/caton.png";
+import commingSoonImage from "@/assets/commingsoon.png";
+import { FaDownload } from "react-icons/fa";
 import Image from "next/image";
-import commingsoon from "@/assets/commingsoon.png"
+
 const products = [
   {
     name: "Caton",
     description: "A comprehensive pharmacy management system.",
     status: "Ready",
     videoUrl: "https://www.youtube.com/embed/sHVUlXAvCd0",
-    imageUrl: caton ,
+    imageUrl: catonImage,
+    downloadLink: "/downloads/caton.exe",
   },
   {
     name: "MediSync",
     description: "A collaborative platform for medical professionals.",
     status: "Coming Soon",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    imageUrl: commingsoon,
+    imageUrl: commingSoonImage,
   },
   {
     name: "HealthTrack",
     description: "Personal health and fitness tracking software.",
     status: "Coming Soon",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    imageUrl: commingsoon,
+    imageUrl: commingSoonImage,
   },
 ];
 
-const ProductPage = () => {
+const ProductPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
+  const [isDownloading, setIsDownloading] = useState(false);
+  
+
+  const handleDownload = (downloadLink: string) => {
+    setIsDownloading(true);
+    const anchor = document.createElement("a");
+    anchor.href = downloadLink;
+    anchor.download = downloadLink.split("/").pop() || "file";
+    anchor.click();
+
+    setTimeout(() => setIsDownloading(false), 3000);
+  };
 
   const openModal = (url: string) => {
     setVideoUrl(url);
@@ -38,15 +54,15 @@ const ProductPage = () => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
     setVideoUrl("");
+    setIsModalOpen(false);
   };
 
   return (
-    <div className="min-h-screen  bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900 text-white">
       {/* Header */}
       <motion.div
-        className="text-center py-10 "
+        className="text-center py-10"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -69,9 +85,9 @@ const ProductPage = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
+            {/* Product Image */}
             <motion.div
-              key={index}
-              className="w-full h-[200px] rounded-t-lg object-cover mb-4"
+              className="w-full h-[200px] rounded-t-lg overflow-hidden mb-4"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.6 }}
@@ -79,11 +95,13 @@ const ProductPage = () => {
               <Image
                 src={product.imageUrl}
                 alt={product.name}
-                className="w-full h-full object-cover"
-                width={500} // Adjust width if needed
-                height={200} // Adjust height if needed
+                className="object-cover"
+                width={500}
+                height={200}
               />
             </motion.div>
+
+            {/* Product Details */}
             <h2 className="text-lg font-semibold text-primary">
               {product.name}
             </h2>
@@ -97,19 +115,40 @@ const ProductPage = () => {
             >
               {product.status}
             </span>
-            <div className="mt-6">
+
+            {/* Action Buttons */}
+            <div className="mt-6 flex justify-between items-center">
               <button
                 className="bg-primary text-white px-4 py-1 rounded-full text-sm"
                 onClick={() => openModal(product.videoUrl)}
               >
                 See Demo
               </button>
+              {product.status === "Ready" && (
+                <motion.button
+                  className="bg-green-500 text-white px-4 py-1 rounded-full text-sm flex items-center gap-2"
+                  onClick={() => handleDownload(product.downloadLink || "#")}
+                  animate={
+                    isDownloading
+                      ? { scale: 1.1, opacity: 0.8 }
+                      : { scale: 1, opacity: 1 }
+                  }
+                  transition={{
+                    duration: 0.3,
+                    repeat: isDownloading ? Infinity : 0,
+                    repeatType: "reverse",
+                  }}
+                >
+                  <FaDownload />
+                  {isDownloading ? "Downloading..." : "Download"}
+                </motion.button>
+              )}
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Modal Popup */}
+      {/* Modal */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
