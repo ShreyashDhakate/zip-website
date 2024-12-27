@@ -19,29 +19,35 @@ const ContactUsPage: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Handle form input changes with proper typing
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // EmailJS configuration
+  const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
+  const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+  const userId = process.env.NEXT_PUBLIC_USER_ID;
+
+  // Handle form input changes
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const serviceId = process.env.SERVICE_ID;
-  const templateId = process.env.TEMPLATE_ID;
-  const userId = process.env.USER_ID;
-
-  // Handle form submission with proper typing
+  // Handle form submission
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
+
+    if (!serviceId || !templateId || !userId) {
+      console.error("EmailJS environment variables are missing.");
+      setErrorMessage("An error occurred. Please try again later.");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
-      if (!serviceId || !templateId || !userId) {
-        console.error("EmailJS environment variables are missing.");
-        setIsSubmitting(false);
-        return; // Stop execution if any variable is undefined
-      }
-      // Replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_USER_ID with actual EmailJS values.
       await emailjs.send(
         serviceId,
         templateId,
@@ -55,6 +61,7 @@ const ContactUsPage: React.FC = () => {
       setIsSubmitted(true);
     } catch (error) {
       console.error("Failed to send email:", error);
+      setErrorMessage("Failed to send your message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -132,6 +139,10 @@ const ContactUsPage: React.FC = () => {
                 className="w-full px-4 py-2 mt-1 bg-gray-700 text-white rounded-md focus:ring-2 focus:ring-primary"
               ></textarea>
             </div>
+
+            {errorMessage && (
+              <p className="text-sm text-red-500">{errorMessage}</p>
+            )}
 
             <button
               type="submit"
