@@ -86,7 +86,7 @@ const ContactUsPage: React.FC = () => {
       <div className="max-w-3xl mx-auto p-6 bg-gray-800 rounded-lg shadow-lg">
         {isSubmitted ? (
           <motion.div
-            className="text-center text-lg text-primary"
+            className="text-center text-lg text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
