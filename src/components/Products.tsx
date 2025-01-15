@@ -14,7 +14,7 @@ const products = [
     status: "Ready",
     videoUrl: "https://www.youtube.com/embed/sHVUlXAvCd0",
     imageUrl: catonImage,
-    downloadLink: "/downloads/caton.zip",
+    downloadLink: "/downloads/caton_0.1.0_x64-setup.exe",
   },
   {
     name: "MediSync",
