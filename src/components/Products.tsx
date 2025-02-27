@@ -6,7 +6,7 @@ import catonImage from "@/assets/caton.png";
 import commingSoonImage from "@/assets/commingsoon.png";
 import { FaDownload } from "react-icons/fa";
 import Image from "next/image";
-
+import VideoModal from "./VideoPlayback";
 const products = [
   {
     name: "Caton",
@@ -37,6 +37,8 @@ const ProductPage: React.FC = () => {
   const [videoUrl, setVideoUrl] = useState("");
   const [isDownloading, setIsDownloading] = useState(false);
   
+const defaultVideoUrl = "https://www.w3schools.com/html/mov_bbb.mp4";
+const videoSrc = videoUrl || defaultVideoUrl;
 
   const handleDownload = (downloadLink: string) => {
     setIsDownloading(true);
@@ -150,31 +152,23 @@ const ProductPage: React.FC = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
-          onClick={closeModal}
-        >
-          <div
-            className="relative bg-white rounded-lg overflow-hidden w-[80%] sm:w-[60%] lg:w-[40%] max-w-4xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute top-2 right-2 text-black text-2xl"
-              onClick={closeModal}
-            >
-              &times;
-            </button>
-            <iframe
-              className="w-full aspect-video"
-              src={videoUrl}
-              title="Demo Video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </div>
-      )}
+      <div>
+        <button 
+  className="absolute top-2 right-2 text-white text-2xl bg-red-500 rounded-full px-2 hover:bg-red-700 z-[500]"
+  onClick={(e) => { e.stopPropagation(); closeModal(); }} 
+  aria-label="Close"
+>
+  &times;
+</button>
+
+      <VideoModal videoUrl={videoUrl} isOpen={isModalOpen} onClose={closeModal} />
+      
+      
+      </div>
+    )}
+
+      
+
     </div>
   );
 };
