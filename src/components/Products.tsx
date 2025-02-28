@@ -12,7 +12,7 @@ const products = [
     name: "Caton",
     description: "A comprehensive pharmacy management system.",
     status: "Ready",
-    videoUrl: "https://www.youtube.com/embed/sHVUlXAvCd0",
+    videoUrl: "https://drive.google.com/file/d/1n6j6RuhsvDTN9zOwGI4XsHhAHbpZwiEj/preview",
     imageUrl: catonImage,
     downloadLink: "/downloads/caton_0.1.0_x64-setup.exe",
   },
@@ -37,9 +37,6 @@ const ProductPage: React.FC = () => {
   const [videoUrl, setVideoUrl] = useState("");
   const [isDownloading, setIsDownloading] = useState(false);
   
-const defaultVideoUrl = "https://www.w3schools.com/html/mov_bbb.mp4";
-const videoSrc = videoUrl || defaultVideoUrl;
-
   const handleDownload = (downloadLink: string) => {
     setIsDownloading(true);
     const anchor = document.createElement("a");
@@ -120,13 +117,18 @@ const videoSrc = videoUrl || defaultVideoUrl;
 
             {/* Action Buttons */}
             <div className="mt-6 flex justify-between items-center">
-              <button
+
+              
+              {product.status === "Ready" && (
+                <div className="flex justify-between w-full">
+                  <button
                 className="bg-primary text-white px-4 py-1 rounded-full text-sm"
                 onClick={() => openModal(product.videoUrl)}
               >
                 See Demo
               </button>
-              {product.status === "Ready" && (
+                
+                
                 <motion.button
                   className="bg-green-500 text-white px-4 py-1 rounded-full text-sm flex items-center gap-2"
                   onClick={() => handleDownload(product.downloadLink || "#")}
@@ -144,6 +146,7 @@ const videoSrc = videoUrl || defaultVideoUrl;
                   <FaDownload />
                   {isDownloading ? "Downloading..." : "Download"}
                 </motion.button>
+                </div>
               )}
             </div>
           </motion.div>
@@ -161,7 +164,7 @@ const videoSrc = videoUrl || defaultVideoUrl;
   &times;
 </button>
 
-      <VideoModal videoUrl={videoUrl} isOpen={isModalOpen} onClose={closeModal} />
+      <VideoModal videoUrl={videoUrl}  />
       
       
       </div>
